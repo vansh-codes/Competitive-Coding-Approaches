@@ -1,3 +1,7 @@
+// ? Prime factor pairs
+// example: n=4 => pair (2,2) is a factor pair made of both prime nums
+// Note: (1,4) and (4,1) cannot be taken as they are not prime pairs
+
 #include <bits/stdc++.h>
 using namespace std;
 
