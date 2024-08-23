@@ -1,4 +1,7 @@
+![image](https://github.com/user-attachments/assets/873bfa1f-6f81-40d7-bd07-080b016cac9c)
+
 # Competitive Coding Approaches
+
 
 Welcome to my GitHub repository where I've compiled all the code and activities completed during my college lectures. From assignments to in-class exercises, this repository serves as a comprehensive collection of my journey through academia. Each piece of code is a testament to my learning and dedication, showcasing not only my proficiency in programming but also my ability to tackle challenges independently. Explore the repository to witness the evolution of my skills and the depth of my understanding across various subjects. Join me in this academic adventure as we delve into the world of code and problem-solving together.
 
