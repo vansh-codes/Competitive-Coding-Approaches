@@ -10,9 +10,36 @@ int main()
     cout << "Enter n: ";
     cin >> n;
 
-    vector<int> prime;
+    // OPTIMIZED using Sieve of Eratosthenes
+    vector<int> prime(n+1, 1);
+    for(int i=2;i*i<=n;i++){
+        if(prime[i]==1){
+            for(int j=i*i;j<=n;j+=i){
+                prime[j]=0;
+            }
+        }
+    }
 
-    for (int i = 2; i <= n; i++)
+    vector<vector<int>> primePairs;
+    for(int i=2;i<=n/2;i++){
+        if(prime[i] && prime[n-i] && i<=n-i){
+            primePairs.push_back({i, n-i});
+        }
+    }
+
+    if(primePairs.size()){
+        for(auto pair: primePairs){
+            cout<<"("<<pair[0]<<","<<pair[1]<<")\n";
+        }
+    } else {
+        cout<<"No pairs found\n";
+    }
+
+
+
+    // BRUTE FORCE
+/*  vector<int> prime;
+     for (int i = 2; i <= n; i++)
     {
         bool isPrime = true;
         for (int j = 2; j * j <= i; j++)
@@ -54,7 +81,7 @@ int main()
     if (!foundPair)
     {
         cout << "No pairs found\n";
-    }
+    } */
 
     return 0;
 }
