@@ -15,7 +15,7 @@ public:
         if (water > 1.0)
         {
             double extraWater = water - 1.0;
-            return min(1.0, water) + (pourWater(extraWater / 2.0, r - 1, c - 1) + pourWater(extraWater / 2.0, r - 1, c));
+            return 1.0 + (pourWater(extraWater / 2.0, r - 1, c - 1) + pourWater(extraWater / 2.0, r, c - 1));
         }
         return min(1.0, water);
     }

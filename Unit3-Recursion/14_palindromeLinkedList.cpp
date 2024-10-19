@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// https://leetcode.com/problems/palindrome-linked-list/
+
 class Node
 {
 public:
@@ -36,31 +38,25 @@ public:
         }
         temp->next = newNode;
     }
-    void reverseLinkedList()
+
+    bool checkPalindrome(Node* &head, Node *right)
     {
-        Node *prev = NULL;
-        Node *current = head;
-        Node *next = NULL;
-        while (current != NULL)
+        if (right == NULL)
         {
-            next = current->next;
-            current->next = prev;
-            prev = current;
-            current = next;
+            return true;
         }
-        head = prev;
+        bool isPalin = checkPalindrome(head, right->next) && (head->data == right->data);
+        head = head->next;
+        return isPalin;
     }
 
-    Node* reverseLinkedListRecursive(Node *&head)
+    bool isPalindromeLL(Node *head)
     {
-        if (head == NULL || head->next == NULL)
-        {
-            return head;
+        if(head==NULL || head->next==NULL){
+            return true;
         }
-        Node *newHead = reverseLinkedListRecursive(head->next);
-        head->next->next = head;
-        head->next = NULL;
-        return newHead;
+        Node* start = head;
+        return checkPalindrome(start, head);
     }
 
     void printLinkedList()
@@ -90,13 +86,8 @@ int main()
     cout << "Original Linked List: ";
     ll.printLinkedList();
 
-    ll.reverseLinkedList();
-    cout<<"Reversed ll: ";
-    ll.printLinkedList();
-
-    cout << "Reversed ll using recursion: ";
-    ll.head = ll.reverseLinkedListRecursive(ll.head);
-    ll.printLinkedList();
+    cout << "Is the LL palindrome? ";
+    cout<<ll.isPalindromeLL(ll.head)<<"\n";
 
     return 0;
 }

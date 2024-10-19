@@ -4,6 +4,7 @@ using namespace std;
 
 int st[MAX];
 int top = -1;
+// int count = 0;
 
 bool isEmpty(){
     return top==-1;
@@ -19,6 +20,7 @@ void push(int val){
         return;
     }
     top++;
+    // count++;
     st[top] = val;
 }
 
@@ -27,6 +29,7 @@ int pop(){
         cout<<"Stack underflow\n";
         return -1;
     }
+    // count--;
     return st[top--];
 }
 
@@ -41,30 +44,26 @@ void display(){
     cout<<"\n";
 }
 
-void insertSorted(int val){
-    if(isEmpty() || st[top]<=val){  // <= for biggest element at top & >= for smallest element at top
-        push(val);
+void deleteMiddleElement(int currIndex, int n){
+    if(isEmpty() || currIndex==n/2){
+        pop();
         return;
     }
     int temp = pop();
-    insertSorted(val);
+    deleteMiddleElement(currIndex+1,n);
     push(temp);
     return;
 }
 
-void sortStack(){
-    if(isEmpty()){
-        return;
-    }
-    int temp = pop();
-    sortStack();
-    insertSorted(temp);
+void deleteMiddle(int n){
+    deleteMiddleElement(0,n);
+    return;
 }
 
 int main(){
     int choice,val;
     do{
-        cout<<"1.Push\n2.Pop\n3.Display\n4.Sort\n5.Exit\n";
+        cout<<"1.Push\n2.Pop\n3.Display\n4.Delete Middle\n5.Exit\n";
         cin>>choice;
         switch(choice){
             case 1:
@@ -78,7 +77,7 @@ int main(){
                 display();
                 break;
             case 4:
-                sortStack();
+                deleteMiddle(top+1);
                 break;
             case 5:
                 cout<<"Exiting..\n";
@@ -89,8 +88,3 @@ int main(){
         }
     }while(choice!=5);
 }
-
-// Expected ques:
-// Delete element from middle
-// Swap element of stacks
-// fetch Bottom most element of the stack

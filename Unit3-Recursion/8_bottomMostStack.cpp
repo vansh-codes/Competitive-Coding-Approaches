@@ -41,30 +41,22 @@ void display(){
     cout<<"\n";
 }
 
-void insertSorted(int val){
-    if(isEmpty() || st[top]<=val){  // <= for biggest element at top & >= for smallest element at top
-        push(val);
-        return;
-    }
-    int temp = pop();
-    insertSorted(val);
-    push(temp);
-    return;
-}
-
-void sortStack(){
+void fetchBottom(){
     if(isEmpty()){
         return;
+    } else if(top==0){
+        cout<<"Bottom most element: "<<st[top]<<"\n";
+        return;
     }
     int temp = pop();
-    sortStack();
-    insertSorted(temp);
+    fetchBottom();
+    push(temp);
 }
 
 int main(){
     int choice,val;
     do{
-        cout<<"1.Push\n2.Pop\n3.Display\n4.Sort\n5.Exit\n";
+        cout<<"1.Push\n2.Pop\n3.Display\n4.Fetch Bottom\n5.Exit\n";
         cin>>choice;
         switch(choice){
             case 1:
@@ -78,7 +70,7 @@ int main(){
                 display();
                 break;
             case 4:
-                sortStack();
+                fetchBottom();
                 break;
             case 5:
                 cout<<"Exiting..\n";
@@ -89,8 +81,3 @@ int main(){
         }
     }while(choice!=5);
 }
-
-// Expected ques:
-// Delete element from middle
-// Swap element of stacks
-// fetch Bottom most element of the stack
