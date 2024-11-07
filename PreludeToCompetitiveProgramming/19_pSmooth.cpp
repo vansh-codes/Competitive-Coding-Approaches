@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//? check if a given number is p-smooth or not
-//* P-smooth is a +ve integer where all prime nums are <= to given prime p
+//? check if a given number is p-smooth or not: https://www.geeksforgeeks.org/p-smooth-numbers-p-friable-number/
+//* P-smooth or P-friable number is an integer whose largest prime factor is less than or equal to P
 // Testcase: 60 3, 100 5
 int main()
 {

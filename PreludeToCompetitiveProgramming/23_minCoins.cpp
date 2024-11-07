@@ -26,7 +26,7 @@ using namespace std;
         while (rup >= coins[i]) {
             rup -= coins[i];
             minimumCoins++;
-            cout << "coin: " << coins[i] << "\n";
+            // cout << "coin: " << coins[i] << "\n";
         }
     }
 
