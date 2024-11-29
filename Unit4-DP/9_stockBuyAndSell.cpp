@@ -30,7 +30,7 @@ vector<vector<int>> stockBuySell(vector<int> A, int n)
             buy = i;
             sell = -1;
         }
-    }
+    }  
 
     // If there's a valid segment ending at the last day
     if (sell != -1)

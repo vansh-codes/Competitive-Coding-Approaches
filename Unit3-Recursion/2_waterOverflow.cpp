@@ -3,26 +3,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution
-{
-public:
-    double pourWater(double water, int r, int c)
-    {
-        if (r < 0 || c < 0 || c > r)
-            return 0;
-        if (r == 0 && c == 0)
-            return min(water, 1.0);
-        if (water > 1.0)
-        {
-            double extraWater = water - 1.0;
-            return 1.0 + (pourWater(extraWater / 2.0, r - 1, c - 1) + pourWater(extraWater / 2.0, r, c - 1));
-        }
-        return min(1.0, water);
-    }
+class Solution {
+  public:
 
-    double waterOverflow(int K, int R, int C)
-    {
-        return pourWater((double)K, R, C);
+    double waterOverflow(int K, int R, int C) {
+    vector<vector<double>> dp(100, vector<double>(100,0.0));
+        dp[0][0] = K;
+        for (int i = 0; i < R; i++) {
+            for (int j = 0; j <= i; j++) {
+                if (dp[i][j] > 1.0) {
+                    double excess = dp[i][j] - 1.0;
+                    if (i + 1 < 100) {
+                        dp[i + 1][j] += excess / 2.0;
+                        dp[i + 1][j + 1] += excess / 2.0;
+                    }
+                }
+            }
+        }
+        return dp[R -1][C -1] >= 1.0 ? 1.0 : dp[R -1][C -1];
     }
 };
 

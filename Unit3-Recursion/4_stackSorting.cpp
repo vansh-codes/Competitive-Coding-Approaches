@@ -42,7 +42,7 @@ void display(){
 }
 
 void insertSorted(int val){
-    if(isEmpty() || st[top]<=val){  // <= for biggest element at top & >= for smallest element at top
+    if(isEmpty() || st[top]<=val){  // <= for biggest element(desc) at top & >= for smallest element at top(asc)
         push(val);
         return;
     }

@@ -32,7 +32,7 @@ int main()
 
     if(n<=0) cout<< -1;
 
-    vector<vector<int>> pascal(n);
+    vector<vector<int>> pascal;
     pascalTriangle(n, pascal, 1);
     for (int i = 0; i < pascal.size(); i++)
     {

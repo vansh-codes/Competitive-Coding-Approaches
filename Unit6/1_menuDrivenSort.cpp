@@ -3,32 +3,37 @@
 using namespace std;
 using namespace std::chrono;
 
-void quickSort(vector<int>& arr, int low, int high);
-int partition(vector<int>& arr, int low, int high);
-void mergeSort(vector<int>& arr, int left, int right);
-void merge(vector<int>& arr, int left, int mid, int right);
+void quickSort(vector<int> &arr, int low, int high);
+int partition(vector<int> &arr, int low, int high);
+void mergeSort(vector<int> &arr, int left, int right);
+void merge(vector<int> &arr, int left, int mid, int right);
 
-void addElements(vector<int>& arr) {
+void addElements(vector<int> &arr)
+{
     arr.clear();
     int n, element;
     cout << "Enter the number of elements: ";
     cin >> n;
     cout << "Enter the elements: ";
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; ++i)
+    {
         cin >> element;
         arr.push_back(element);
     }
 }
 
-void displayElements(const vector<int>& arr) {
+void displayElements(const vector<int> &arr)
+{
     cout << "Array elements: ";
-    for (const int& element : arr) {
+    for (const int &element : arr)
+    {
         cout << element << " ";
     }
     cout << endl;
 }
 
-void quickSortMenu(vector<int>& arr) {
+void quickSortMenu(vector<int> &arr)
+{
     auto start = high_resolution_clock::now();
     quickSort(arr, 0, arr.size() - 1);
     auto stop = high_resolution_clock::now();
@@ -36,7 +41,8 @@ void quickSortMenu(vector<int>& arr) {
     cout << "Quick Sort completed in " << duration.count() << " microseconds.\n";
 }
 
-void mergeSortMenu(vector<int>& arr) {
+void mergeSortMenu(vector<int> &arr)
+{
     auto start = high_resolution_clock::now();
     mergeSort(arr, 0, arr.size() - 1);
     auto stop = high_resolution_clock::now();
@@ -44,19 +50,24 @@ void mergeSortMenu(vector<int>& arr) {
     cout << "Merge Sort completed in " << duration.count() << " microseconds.\n";
 }
 
-void quickSort(vector<int>& arr, int low, int high) {
-    if (low < high) {
+void quickSort(vector<int> &arr, int low, int high)
+{
+    if (low < high)
+    {
         int pi = partition(arr, low, high);
         quickSort(arr, low, pi - 1);
         quickSort(arr, pi + 1, high);
     }
 }
 
-int partition(vector<int>& arr, int low, int high) {
+int partition(vector<int> &arr, int low, int high)
+{
     int pivot = arr[high];
     int i = (low - 1);
-    for (int j = low; j <= high - 1; ++j) {
-        if (arr[j] < pivot) {
+    for (int j = low; j <= high - 1; ++j)
+    {
+        if (arr[j] < pivot)
+        {
             ++i;
             swap(arr[i], arr[j]);
         }
@@ -65,8 +76,10 @@ int partition(vector<int>& arr, int low, int high) {
     return (i + 1);
 }
 
-void mergeSort(vector<int>& arr, int left, int right) {
-    if (left < right) {
+void mergeSort(vector<int> &arr, int left, int right)
+{
+    if (left < right)
+    {
         int mid = left + (right - left) / 2;
         mergeSort(arr, left, mid);
         mergeSort(arr, mid + 1, right);
@@ -74,41 +87,43 @@ void mergeSort(vector<int>& arr, int left, int right) {
     }
 }
 
-void merge(vector<int>& arr, int left, int mid, int right) {
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
-    vector<int> L(n1), R(n2);
-    for (int i = 0; i < n1; ++i)
-        L[i] = arr[left + i];
-    for (int j = 0; j < n2; ++j)
-        R[j] = arr[mid + 1 + j];
-    int i = 0, j = 0, k = left;
-    while (i < n1 && j < n2) {
-        if (L[i] <= R[j]) {
-            arr[k] = L[i];
-            ++i;
-        } else {
-            arr[k] = R[j];
-            ++j;
+void merge(vector<int> &arr, int low, int mid, int high)
+{
+    vector<int> temp;
+    int i = low;     // starting index of left subarray
+    int j = mid + 1; // starting index of right subarray
+    while (i <= mid && j <= high){
+        if (arr[i] <= arr[j])
+        {
+            temp.push_back(arr[i]);
+            i++;
         }
-        ++k;
+        else
+        {
+            temp.push_back(arr[j]);
+            j++;
+        }
     }
-    while (i < n1) {
-        arr[k] = L[i];
-        ++i;
-        ++k;
+    while (i <= mid){
+        temp.push_back(arr[i]);
+        i++;
     }
-    while (j < n2) {
-        arr[k] = R[j];
-        ++j;
-        ++k;
+
+    while (j <= high){
+        temp.push_back(arr[j]);
+        j++;
+    }
+    for (int i = low; i <= high; i++){
+        arr[i] = temp[i - low];
     }
 }
 
-int main() {
+int main()
+{
     vector<int> arr;
     int choice;
-    do {
+    do
+    {
         cout << "Menu:\n";
         cout << "1. Add elements into array\n";
         cout << "2. Quick Sort and print time complexity\n";
@@ -117,24 +132,25 @@ int main() {
         cout << "5. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
-        switch (choice) {
-            case 1:
-                addElements(arr);
-                break;
-            case 2:
-                quickSortMenu(arr);
-                break;
-            case 3:
-                mergeSortMenu(arr);
-                break;
-            case 4:
-                displayElements(arr);
-                break;
-            case 5:
-                cout << "Exiting...\n";
-                break;
-            default:
-                cout << "Invalid choice. Please try again.\n";
+        switch (choice)
+        {
+        case 1:
+            addElements(arr);
+            break;
+        case 2:
+            quickSortMenu(arr);
+            break;
+        case 3:
+            mergeSortMenu(arr);
+            break;
+        case 4:
+            displayElements(arr);
+            break;
+        case 5:
+            cout << "Exiting...\n";
+            break;
+        default:
+            cout << "Invalid choice. Please try again.\n";
         }
     } while (choice != 5);
     return 0;

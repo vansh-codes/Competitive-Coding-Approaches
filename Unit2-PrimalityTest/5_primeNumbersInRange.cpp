@@ -2,7 +2,7 @@
 using namespace std;
 
 vector<int> sieveOfAtkin(int limit) {
-    vector<bool> is_prime(limit + 1, false);
+    vector<bool> sieve(limit + 1, false);
     vector<int> primes;
 
     if (limit > 2) primes.push_back(2);
@@ -12,29 +12,29 @@ vector<int> sieveOfAtkin(int limit) {
         for (int y = 1; y * y <= limit; y++) {
             int n = (4 * x * x) + (y * y);
             if (n <= limit && (n % 12 == 1 || n % 12 == 5)) {
-                is_prime[n] = !is_prime[n];
+                sieve[n] = !sieve[n];
             }
             n = (3 * x * x) + (y * y);
             if (n <= limit && n % 12 == 7) {
-                is_prime[n] = !is_prime[n];
+                sieve[n] = !sieve[n];
             }
             n = (3 * x * x) - (y * y);
             if (x > y && n <= limit && n % 12 == 11) {
-                is_prime[n] = !is_prime[n];
+                sieve[n] = !sieve[n];
             }
         }
     }
 
     for (int r = 5; r * r <= limit; r++) {
-        if (is_prime[r]) {
+        if (sieve[r]) {
             for (int i = r * r; i <= limit; i += r * r) {
-                is_prime[i] = false;
+                sieve[i] = false;
             }
         }
     }
 
     for (int a = 5; a <= limit; a++) {
-        if (is_prime[a]) {
+        if (sieve[a]) {
             primes.push_back(a);
         }
     }
