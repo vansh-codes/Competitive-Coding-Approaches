@@ -6,7 +6,7 @@ stack<int> st2;
 
 // to perform enqueue operation on queue
 void enqueue(int val){
-    cout << "Enqueue\n";3
+    cout << "Enqueue\n";
 }
 
 // to perform dequeue operation on queue

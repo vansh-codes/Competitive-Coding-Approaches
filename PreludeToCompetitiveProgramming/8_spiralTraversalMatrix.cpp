@@ -2,25 +2,25 @@
 using namespace std;
 
 int main(){
-    int n, m;
-    cin>>m>>n;
+    int row, col;
+    cin>>row>>col;
 
-    int arr[m][n];
+    int arr[row][col];
 
-    for(int i=0;i<m;i++){
-        for(int j=0;j<n;j++)
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++)
             cin>>arr[i][j];
     }
 
     cout<<"Array Elements: "<<endl;
-    for(int i=0;i<m;i++){
-        for(int j=0;j<n;j++)
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++)
             cout<<arr[i][j]<<" ";
         cout<<"\n";
     }
     cout<<endl;
 
-    int left = 0, right = n-1, top = 0, bottom = m-1;
+    int left = 0, right = col-1, top = 0, bottom = row-1;
     vector<int> spiralTraversal;
     while(left<=right && top<=bottom){
         for(int i=left;i<=right;i++){

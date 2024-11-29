@@ -25,33 +25,33 @@ int main(){
     int res[m*n];
     // dir = 0 -> upward, dir = 1 -> downward
     while(index < m*n){
-        res[index++] = arr[row][col];
+        res[index++] = arr[m][n];
         if(dir==0){
-            if(col == n-1){
+            if(n == n-1){
                 dir = 1;
-                row++;
+                m++;
             }
-            else if(row == 0){
+            else if(m == 0){
                 dir = 1;
-                col++;
+                n++;
             }
             else{
-                row--;
-                col++;
+                m--;
+                n++;
             }
         }
         else{
-            if(row == m-1){
+            if(m == m-1){
                 dir = 0;
-                col++;
+                n++;
             }
-            else if(col == 0){
+            else if(n == 0){
                 dir = 0;
-                row++;
+                m++;
             }
             else{
-                row++;
-                col--;
+                m++;
+                n--;
             }
         }
     }
