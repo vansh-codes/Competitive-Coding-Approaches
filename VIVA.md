@@ -24,3 +24,14 @@
 - Tabulation is a bottom-up approach where we store the results of the subproblems in a table and use these results to solve larger subproblems until we solve the entire problem
 - Stores the results of subproblems in a table
 - Iterative implementation
+
+
+### Optimal Substructure Property
+- Definition: A problem exhibits optimal substructure if the optimal solution to the problem can be constructed from the optimal solutions of its subproblems.
+- Significance: This is a fundamental property for using DP. If a problem doesn't have this property, DP cannot be applied.
+- Basically, It means the solution of the main problem can be built from solutions to its subproblems.
+
+### Overlapping Subproblems Property
+- Definition: A problem exhibits overlapping subproblems if the same subproblems are solved multiple times in the recursive process.
+- Significance: Overlapping subproblems are key to applying memoization or tabulation in DP to avoid redundant calculations.
+
